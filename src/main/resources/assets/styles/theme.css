@@ -1,0 +1,68 @@
+.root {
+    -fx-background-color: #2d2d2d;
+    -fx-text-fill: white;
+}
+
+#gui-title {
+    -fx-font-size: 14;
+    -fx-font-weight: bold;
+    -fx-fill: white;
+}
+
+#authors-text{
+    -fx-font-size: 10;
+    -fx-fill: white;
+}
+
+#title-background {
+    -fx-background-color: rgba(25, 25, 25);
+    -fx-border-radius: 15 15 0 0;
+    -fx-background-radius: 15 15 0 0;
+}
+
+.text-field, .button, .check-box {
+    -fx-background-radius: 15 15 15 15;
+    -fx-background-color: rgba(25, 25, 25);
+    -fx-font-size: 12;
+    -fx-text-fill: white;
+}
+
+.button {
+    -fx-padding: 8px 12px;
+}
+
+.check-box {
+    -fx-padding: 8px;
+}
+
+.button:hover {
+    -fx-background-color: rgba(35, 35, 35);
+}
+
+.main-container {
+    -fx-border-color: white;
+    -fx-border-width: 2px;
+    -fx-border-radius: 10px;
+}
+
+.choice-box .context-menu {
+-fx-background-color: black;
+}
+.choice-box .menu-item:focused {
+-fx-background-color: rgba(100, 100, 100);
+}
+.choice-box .menu-item > .label {
+-fx-text-fill: white;
+}
+.choice-box .menu-item:focused > .label {
+-fx-text-fill: black;
+}
+.choice-box {
+  -fx-mark-color: rgba(100, 100, 100);
+  -fx-background-radius: 15 15 15 15;
+  -fx-background-color: rgba(25, 25, 25);
+  -fx-font-size: 14;
+  -fx-font-weight: bold;
+}
+
+.choice-box > .label { -fx-text-fill: white; }
