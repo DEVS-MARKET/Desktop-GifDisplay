@@ -25,7 +25,8 @@ public class Config {
         try (InputStream inputStream = new FileInputStream(config == null ? "config.yml" : config)) {
             yamlMap = yaml.load(inputStream);
         } catch (Exception e) {
-            if (yamlMap.size() != 5) loadConfig(null);
+            System.out.println("Cant load the config! Report this stacktrace on devsmarket discord:");
+            e.printStackTrace();
         }
     }
 

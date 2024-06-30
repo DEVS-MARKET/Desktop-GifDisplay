@@ -1,51 +1,28 @@
 package uk.whitedev.desktop.displays.functions;
 
-import javax.sound.sampled.*;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.util.Duration;
+
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 public class MusicFunc {
     public void playMusic(String filePath, String mainSong) {
         new Thread(() -> {
-            try {
-                AudioInputStream audioInputStream;
-                if (filePath.isEmpty()) {
-                    byte[] defaultSongBytes = readAllBytesFromResource(mainSong.equals("GoBang") ? "/assets/music/GoBang Music.wav" : "/assets/music/Default Song.wav");
-                    audioInputStream = AudioSystem.getAudioInputStream(new BufferedInputStream(new ByteArrayInputStream(defaultSongBytes)));
-                } else {
-                    Path audioFilePath = Paths.get(filePath);
-                    byte[] fileBytes = Files.readAllBytes(audioFilePath);
-                    audioInputStream = AudioSystem.getAudioInputStream(new BufferedInputStream(new ByteArrayInputStream(fileBytes)));
-                }
-
-                Clip clip = AudioSystem.getClip();
-                clip.open(audioInputStream);
-
-                while (true) {
-                    clip.setFramePosition(0);
-                    clip.loop(Clip.LOOP_CONTINUOUSLY);
-                    Thread.sleep(clip.getMicrosecondLength() / 1000);
-                }
-            } catch (UnsupportedAudioFileException | LineUnavailableException | IOException | InterruptedException e) {
-                throw new RuntimeException(e);
+            Media hit;
+            if(filePath.isEmpty()) {
+                hit = new Media(getClass().getResource(mainSong.equals("GoBang") ? "/assets/music/GoBang Music.wav" : "/assets/music/Default Song.wav").toString());
+            }else{
+                hit = new Media(new File(filePath).toURI().toString());
+            }
+            MediaPlayer mediaPlayer = new MediaPlayer(hit);
+            mediaPlayer.setOnEndOfMedia(() -> mediaPlayer.seek(Duration.ZERO));
+            mediaPlayer.play();
+            while (true) {
+                mediaPlayer.setOnEndOfMedia(() -> {
+                    mediaPlayer.seek(Duration.ZERO);
+                });
             }
         }).start();
-    }
-
-    private byte[] readAllBytesFromResource(String resourcePath) throws IOException {
-        try (ByteArrayOutputStream out = new ByteArrayOutputStream();
-             InputStream in = getClass().getResourceAsStream(resourcePath)) {
-            if (in == null) {
-                throw new IOException("Resource not found: " + resourcePath);
-            }
-            byte[] buffer = new byte[4096];
-            int bytesRead;
-            while ((bytesRead = in.read(buffer)) != -1) {
-                out.write(buffer, 0, bytesRead);
-            }
-            return out.toByteArray();
-        }
     }
 }

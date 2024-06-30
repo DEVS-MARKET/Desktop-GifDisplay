@@ -76,7 +76,7 @@ public class OptionDisplay {
 
         musicPathTextField = new TextField();
         musicPathTextField.setPromptText("Enter path to music");
-        gifPathTextField.setText(config.getConfig().get("MusicPath").toString());
+        musicPathTextField.setText(config.getConfig().get("MusicPath").toString());
         Button musicPathButton = new Button("Browse");
         musicPathButton.setOnAction(e -> browseFile(musicPathTextField));
 
