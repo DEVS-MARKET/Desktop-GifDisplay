@@ -3,3 +3,4 @@ MusicPath: ""
 GifPath: ""
 GifSize: 400
 Music: true
+OnTop: true

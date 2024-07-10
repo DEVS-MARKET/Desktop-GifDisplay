@@ -53,11 +53,12 @@ public class GifDisplay extends Application {
         int gifSize = (int) config.getConfig().get("GifSize");
         String musicPath = (String) config.getConfig().get("MusicPath");
         boolean isMusic = (boolean) config.getConfig().get("Music");
+        boolean isAlwaysOnTop = (boolean) config.getConfig().get("OnTop");
 
         Image gifImage = new Image(gifPath.isEmpty() ? Objects.requireNonNull(GifDisplay.class.getResource("/assets/images/" + standardGif.toLowerCase() + ".gif")).toString() : gifPath);
         Scene scene = getScene(mainStage, gifImage, gifSize);
 
-        mainStage.setAlwaysOnTop(true);
+        mainStage.setAlwaysOnTop(isAlwaysOnTop);
         mainStage.setScene(scene);
         mainStage.show();
 

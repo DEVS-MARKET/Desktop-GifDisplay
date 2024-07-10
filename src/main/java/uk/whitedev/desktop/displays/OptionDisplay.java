@@ -101,21 +101,26 @@ public class OptionDisplay {
         useDefaultMusicCheckbox.setSelected((Boolean) config.getConfig().get("Music"));
         GridPane.setMargin(useDefaultMusicCheckbox, new Insets(5, 0, 0, 5));
 
+        CheckBox alwaysOnTopCheckbox = new CheckBox("Always on top");
+        gridPane.add(alwaysOnTopCheckbox, 0, 6);
+        alwaysOnTopCheckbox.setSelected((Boolean) config.getConfig().get("OnTop"));
+        GridPane.setMargin(alwaysOnTopCheckbox, new Insets(5, 0, 0, 5));
+
         HBox buttonBox = new HBox(10);
         Button saveConfigButton = new Button("Save Config");
-        saveConfigButton.setOnMouseClicked(e -> optionsFunc.saveConfig(gifChoiceBox.getSelectionModel().getSelectedItem(), musicPathTextField.getText(), gifPathTextField.getText(), Integer.parseInt(gifSizeTextField.getText()), useDefaultMusicCheckbox.isSelected()));
+        saveConfigButton.setOnMouseClicked(e -> optionsFunc.saveConfig(gifChoiceBox.getSelectionModel().getSelectedItem(), musicPathTextField.getText(), gifPathTextField.getText(), Integer.parseInt(gifSizeTextField.getText()), useDefaultMusicCheckbox.isSelected(), alwaysOnTopCheckbox.isSelected()));
         Button loadConfigButton = new Button("Exit");
         loadConfigButton.setOnMouseClicked(e -> System.exit(0));
         buttonBox.getChildren().addAll(saveConfigButton, loadConfigButton);
 
-        gridPane.add(buttonBox, 0, 6, 2, 1);
+        gridPane.add(buttonBox, 0, 7, 2, 1);
         GridPane.setMargin(buttonBox, new Insets(5, 0, 0, 5));
 
         Text authorText = new Text("Authors: github.com/DEVS-MARKET\n" +
                 "Order your own app here: discord.gg/KhExwvqZb5");
         authorText.setId("authors-text");
         GridPane.setMargin(authorText, new Insets(5, 0, 0, 5));
-        gridPane.add(authorText, 0, 7);
+        gridPane.add(authorText, 0, 8);
 
         gridPane.getStyleClass().add("main-container");
         return gridPane;

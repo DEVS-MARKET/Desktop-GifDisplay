@@ -6,6 +6,7 @@ plugins {
 
 repositories {
     mavenCentral()
+    maven { url 'https://jitpack.io' }
 }
 
 dependencies {
@@ -17,6 +18,7 @@ dependencies {
     implementation 'org.openjfx:javafx-swing:18'
     implementation 'org.openjfx:javafx-web:18'
     implementation 'org.yaml:snakeyaml:2.2'
+
 }
 
 
@@ -26,7 +28,7 @@ test {
 
 javafx {
     version = "18"
-    modules = [ 'javafx.base', 'javafx.controls', 'javafx.fxml', 'javafx.graphics', 'javafx.media', 'javafx.swing', 'javafx.web' ]
+    modules = ['javafx.base', 'javafx.controls', 'javafx.fxml', 'javafx.graphics', 'javafx.media', 'javafx.swing', 'javafx.web']
 }
 
 jar {
