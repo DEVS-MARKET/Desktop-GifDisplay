@@ -16,7 +16,6 @@ import uk.whitedev.desktop.Config;
 import uk.whitedev.desktop.displays.functions.OptionsFunc;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 

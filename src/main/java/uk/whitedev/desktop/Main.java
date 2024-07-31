@@ -7,6 +7,6 @@ public class Main {
 
     public static void main(String[] args) {
         config.loadConfig(null);
-        new Thread(GifDisplay::initGui).start();
+        GifDisplay.initGui();
     }
 }
