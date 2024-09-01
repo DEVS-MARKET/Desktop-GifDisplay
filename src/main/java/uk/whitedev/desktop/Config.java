@@ -1,7 +1,9 @@
 package uk.whitedev.desktop;
 
+import org.yaml.snakeyaml.DumperOptions;
 import org.yaml.snakeyaml.Yaml;
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -59,11 +61,15 @@ public class Config {
     }
 
     public void saveConfig() {
-        Yaml yaml = new Yaml();
-        try (Writer writer = new FileWriter("config.yml")) {
+        DumperOptions options = new DumperOptions();
+        options.setDefaultFlowStyle(DumperOptions.FlowStyle.BLOCK);
+        options.setPrettyFlow(true);
+        options.setDefaultScalarStyle(DumperOptions.ScalarStyle.PLAIN);
+        Yaml yaml = new Yaml(options);
+        try (Writer writer = new OutputStreamWriter(new FileOutputStream("config.yml"), StandardCharsets.UTF_8)) {
             yaml.dump(yamlMap, writer);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Error while saving the config file: ", e);
         }
     }
 
